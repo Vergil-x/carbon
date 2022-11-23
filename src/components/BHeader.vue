@@ -1,59 +1,38 @@
 <script setup lang="ts">
-import { h, ref } from 'vue';
-import type{ MenuOption } from 'naive-ui';
-import { RouterLink } from 'vue-router';
+import router from '@/router';
+import { ref } from 'vue';
+const title = ref("CARBON CALCULATOR");
 
-    const title = ref("CARBON CALCULATE");
-    let activeKey = ref<string | null>(null);
-    const HeadButton =() => import("../components/HeadButton.vue")
-    const menuOptions: MenuOption[] = [
+const isSelect = ref(0);
+const buttons = [
   {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'home'
-          }
-        },
-        { default: () => 'CALCULATE' }
-      ),
-    key: 'CALCULATE',
+    routerPath: '/',
+    buttonName: 'CALCULATE'
   },
   {
-    label: () =>
-    h(
-        RouterLink,
-        {
-          to: {
-            name: 'home'
-          }
-        },
-        { default: () => 'CONTACT' }
-      ),
-    key: 'CONTACT',
+    routerPath: 'contact',
+    buttonName: 'CONTACT'
   },
   {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'about'
-          }
-        },
-        { default: () => 'ABOUT US' }
-      ),
-    key: 'ABOUT US',
-  },]
+    routerPath: 'about',
+    buttonName: 'ABOUT US'
+  },
+];
+const handleClick=(routerPath:string,index:number)=>{
+  isSelect.value = index;
+ router.push(routerPath);
+}
 </script>
 
 <template>
-    <div class="text-2xl mx-2 mt-3 mb-5 font-bold">
-        {{title}}
+  <div class="text-2xl mx-2 mt-3 mb-5 font-bold">
+    {{ title }}
+  </div>
+  <div class="bg-black max-w-6xl m-0 flex">
+    <div :class="{'bg-bing':index===isSelect}" v-for="item,index in buttons" @click="handleClick(item.routerPath,index)">
+      <div class="text-base text-white my-2 mx-4">
+        {{ item.buttonName }}
+      </div>
     </div>
-    <div class="bg-black max-w-6xl m-0">
-      <n-menu  v-model:value="activeKey" mode="horizontal" :options="menuOptions"/>
-    </div>
-   
+  </div>
 </template>
