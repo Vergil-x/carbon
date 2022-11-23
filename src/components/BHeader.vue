@@ -28,7 +28,7 @@ const handleClick=(routerPath:string,index:number)=>{
   <div class="text-2xl mx-2 mt-3 mb-5 font-bold">
     {{ title }}
   </div>
-  <div class="bg-black max-w-6xl m-0 flex">
+  <div class="bg-black max-w-7xl m-0 flex">
     <div :class="{'bg-bing':index===isSelect}" v-for="item,index in buttons" @click="handleClick(item.routerPath,index)">
       <div class="text-base text-white my-2 mx-4">
         {{ item.buttonName }}

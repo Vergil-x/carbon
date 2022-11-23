@@ -66,7 +66,7 @@
             </n-input-group>
             <div class="ml-80">
             <n-space vertical >
-              <div>
+              <div class="font-bold">
              Are there any other activties?
             </div>
             <n-button class="bg-bing text-white"  @click="addItem" round>
@@ -109,6 +109,7 @@ const addItem = () => {
 }
 const labelStyle = reactive({
   fontSize: '1rem',
+  fontWeight: '700'
 })
 </script>
 
